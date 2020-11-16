@@ -11,7 +11,7 @@ public class CirQueue {
     private int front, rear;
 
     public CirQueue() {
-        this.data = new char[4];
+        this.data = new char[100];
     }
 
     public void display(String msg){
