@@ -1,4 +1,4 @@
-package algorithm.matrix;
+package algorithm.generalizedlist;
 
 import java.util.Scanner;
 

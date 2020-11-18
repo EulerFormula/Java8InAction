@@ -1,4 +1,4 @@
-package algorithm.matrix;
+package algorithm.generalizedlist;
 
 /**
  * 广义表结点

@@ -1,4 +1,4 @@
-package algorithm.matrix;
+package algorithm.generalizedlist;
 
 /**
  * 0表示原子，1表示子表
