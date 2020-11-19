@@ -1,17 +1,19 @@
 package algorithm.queue;
 
+import java.util.Objects;
+
 /**
  * 顺序循环队列
  * 普通的顺序队列会造成空间的浪费，一般情况下真正实用的顺序队列是循环队列
  */
-public class CirQueue {
+public class CirQueue<T> {
 
-    private char[] data;
+    private Object[] data;
 
     private int front, rear;
 
     public CirQueue() {
-        this.data = new char[100];
+        this.data = new Object[100];
     }
 
     public void display(String msg){
@@ -47,7 +49,7 @@ public class CirQueue {
     /**
      * 入队
      */
-    public void enQueue(char x) {
+    public void enQueue(T x) {
         if (isFull()) {
             System.out.println("Queue overflow");
             return;
@@ -63,12 +65,12 @@ public class CirQueue {
     /**
      * 出队
      */
-    public Character deQueue() {
+    public T deQueue() {
         if (isEmpty()) {
             System.out.println("Queue underflow");
             return null;
         } else {
-            char ch = data[front];
+            T ch = (T)data[front];
             front = (front + 1) % data.length;
             return ch;
         }
@@ -78,19 +80,19 @@ public class CirQueue {
     /**
      * 取对头元素
      */
-    public Character getFront(){
+    public T getFront(){
         if (isEmpty()) {
             System.out.println("Queue underflow");
             return null;
         } else {
-            char ch = data[front];
+            T ch = (T)data[front];
             return ch;
         }
     }
 
     public static void main(String[] args) {
 
-        CirQueue cirQueue = new CirQueue();
+        CirQueue<Character> cirQueue = new CirQueue<>();
         cirQueue.init();
 
         cirQueue.enQueue('t');

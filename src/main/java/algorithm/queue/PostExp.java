@@ -41,7 +41,7 @@ public class PostExp {
      * @param queue
      */
     static void ctPostExp(CirQueue queue) {
-        SeqStack seqStack = new SeqStack();
+        SeqStack<Character> seqStack = new SeqStack<>();
         seqStack.init();
         seqStack.push('#');
 
@@ -74,7 +74,7 @@ public class PostExp {
                 case '#':
                     char op;
                     do {
-                        op = seqStack.pop();
+                        op = (char)seqStack.pop();
                         if (op != '(' && op != '#') {
                             queue.enQueue(op);
                         }
@@ -84,8 +84,8 @@ public class PostExp {
                 case '-':
                 case '*':
                 case '/':
-                    while (priority(c) <= priority(seqStack.getTop())) {
-                        op = seqStack.pop();
+                    while (priority(c) <= priority((char)seqStack.getTop())) {
+                        op = (char)seqStack.pop();
                         queue.enQueue(op);
                     }
 
@@ -101,7 +101,7 @@ public class PostExp {
 
         char ch;
         while (!queue.isEmpty()){
-            ch = queue.deQueue();
+            ch = (char)queue.deQueue();
             if(ch>='0' && ch<='9'){
                 seqStack1.push(ch-'0');
             }else {
@@ -133,7 +133,7 @@ public class PostExp {
     }
 
     public static void main(String[] args) {
-        CirQueue cirQueue = new CirQueue();
+        CirQueue<Character> cirQueue = new CirQueue<>();
         cirQueue.init();
         ctPostExp(cirQueue);
 

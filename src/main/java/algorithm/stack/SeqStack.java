@@ -5,9 +5,9 @@ import lambdasinaction.chap9.Square;
 /**
  * 顺序栈
  */
-public class SeqStack {
+public class SeqStack<T> {
 
-    private char[] data = new char[100];
+    private Object[] data = new Object[100];
     private int top;
 
 
@@ -44,7 +44,7 @@ public class SeqStack {
     /**
      * 进栈
      */
-    public void push(char x) {
+    public void push(T x) {
         if (isFull()) {
             System.out.println("stack overflow");
         } else {
@@ -58,30 +58,30 @@ public class SeqStack {
      *
      * @return
      */
-    public Character pop() {
+    public T pop() {
         if (isEmpty()) {
             System.out.println("stack underflow");
             return null;
         } else {
-            return data[top--];
+            return (T)data[top--];
         }
     }
 
     /**
      * 取栈顶元素
      */
-    public Character getTop() {
+    public T getTop() {
         if (isEmpty()) {
             System.out.println("stack empty");
             return null;
         } else {
-            return data[top];
+            return (T)data[top];
         }
     }
 
 
     public static void main(String[] args) {
-        SeqStack seqStack = new SeqStack();
+        SeqStack<Character> seqStack = new SeqStack<>();
 
         seqStack.init();
         seqStack.push('t');

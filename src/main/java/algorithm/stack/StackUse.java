@@ -16,7 +16,7 @@ public class StackUse {
      * 括号匹配，否则说明不匹配
      */
     public static boolean kuohao(String input) {
-        SeqStack seqStack = new SeqStack();
+        SeqStack<Character> seqStack = new SeqStack<>();
         seqStack.init();
 
 
@@ -28,7 +28,7 @@ public class StackUse {
                 if (seqStack.isEmpty()) {
                     return false;
                 } else {
-                    char x = seqStack.pop();
+                    char x = (char)seqStack.pop();
                 }
             }
         }
@@ -46,7 +46,7 @@ public class StackUse {
      * 否则不是
      */
     public static boolean isPalindrom(String input) {
-        SeqStack seqStack = new SeqStack();
+        SeqStack<Character> seqStack = new SeqStack<>();
         seqStack.init();
 
         for (int i = 0; i < input.length() / 2; i++) {
@@ -54,7 +54,7 @@ public class StackUse {
         }
 
         for (int i = (input.length() + 1) / 2; i < input.length(); i++) {
-            if (input.charAt(i) != seqStack.pop()) {
+            if (input.charAt(i) != (char)seqStack.pop()) {
                 return false;
             }
         }
@@ -66,7 +66,7 @@ public class StackUse {
      * N = (N/d)*d + N%d
      */
     public static void conversion(int N,int d){
-        SeqStack seqStack = new SeqStack();
+        SeqStack<Character> seqStack = new SeqStack<>();
         seqStack.init();
 
         System.out.print(N+"的"+d+"进制是：");
@@ -76,7 +76,7 @@ public class StackUse {
         }
 
         while (!seqStack.isEmpty()){
-            char ch = seqStack.pop();
+            char ch = (char)seqStack.pop();
             System.out.printf("%c",ch);
         }
         System.out.println();
