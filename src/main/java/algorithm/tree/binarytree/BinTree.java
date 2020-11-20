@@ -2,7 +2,9 @@ package algorithm.tree.binarytree;
 
 import algorithm.queue.CirQueue;
 import algorithm.stack.SeqStack;
+import lambdasinaction.chap5.Finding;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -13,6 +15,12 @@ import java.util.Scanner;
  */
 public class BinTree {
 
+    private int h;
+
+
+    public BinTree() {
+        this.h = 0;
+    }
 
     /**
      * 先序遍历
@@ -249,6 +257,62 @@ public class BinTree {
 
     }
 
+    /**
+     * 求二叉树的深度
+     * 若一个二叉树为空，则它的深度为0，否则它的深度等于其左右子树中的最大深度加1。
+     *
+     * @param binTNode
+     * @return
+     */
+    public static int binTreeDepth(BinTNode binTNode) {
+        int depl;
+        int depr;
+        if (binTNode == null) {
+            return 0;
+        } else {
+            depl = binTreeDepth(binTNode.getLchild());
+            depr = binTreeDepth(binTNode.getRchild());
+
+            if (depl > depr) {
+                return depl + 1;
+            } else {
+                return depr + 1;
+            }
+        }
+    }
+
+    /**
+     * 按值查找
+     */
+    public static boolean findBT(BinTNode binTNode, char x) {
+        if (binTNode != null) {
+            if (binTNode.getData() == x) {
+                return true;
+            } else {
+
+                return findBT(binTNode.getLchild(), x) || findBT(binTNode.getRchild(), x);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 求结点的层次
+     */
+    public int level(BinTNode binTNode, char x, int initH) {
+        if (binTNode == null) {
+            h = 0;
+        } else if (binTNode.getData() == x) {
+            h = initH;
+        } else {
+            level(binTNode.getLchild(), x, initH + 1);
+            if (h == 0) {
+                level(binTNode.getRchild(), x, initH + 1);
+            }
+        }
+
+        return h;
+    }
 
     public static void main(String[] args) {
         BinTNode binTNode = BinTree.createTree("(A(B,C))");
@@ -257,5 +321,15 @@ public class BinTree {
         //BinTree.inOrder(binTNode);
         //BinTree.inOrder1(binTNode);
         BinTree.transLevel(binTNode);
+
+
+        System.out.println();
+        System.out.println("树的深度" + BinTree.binTreeDepth(binTNode));
+
+        System.out.println("查找x的结果：" + BinTree.findBT(binTNode, 'C'));
+
+        BinTree binTree = new BinTree();
+
+        System.out.println("x所在的深度是：" + binTree.level(binTNode,'A',1));
     }
 }
