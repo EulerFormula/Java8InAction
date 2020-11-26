@@ -1,6 +1,7 @@
 package algorithm.graph;
 
 import algorithm.queue.CirQueue;
+import algorithm.stack.SeqStack;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -87,6 +88,36 @@ public class ALGraph {
     }
 
     /**
+     * 深度优先遍历（非递归）
+     *
+     * @param i
+     */
+    public void DFS2(int i) {
+        SeqStack<EdgeNode> seqStack = new SeqStack<>();
+        seqStack.init();
+        System.out.printf("v%d ", i);
+        visited[i] = 1;
+        EdgeNode edgeNode = vNodes[i].getLink();
+        while (!seqStack.isEmpty() || edgeNode != null) {
+            while (edgeNode != null) {
+                if (visited[edgeNode.getAdjvex()] == 1) {
+                    edgeNode = edgeNode.getNext();
+                } else {
+                    System.out.printf("v%d ", edgeNode.getAdjvex());
+                    visited[edgeNode.getAdjvex()] = 1;
+                    seqStack.push(edgeNode);
+                    edgeNode = vNodes[edgeNode.getAdjvex()].getLink();
+                }
+            }
+
+            if (!seqStack.isEmpty()) {
+                edgeNode = seqStack.pop();
+                edgeNode = edgeNode.getNext();
+            }
+        }
+    }
+
+    /**
      * 广度优先搜索遍历算法
      *
      * @param i
@@ -135,6 +166,10 @@ public class ALGraph {
         System.out.println("=====邻接表的广度优先遍历=====");
         alGraph.clearVisited();
         alGraph.BFS(0);
+        System.out.println();
+        System.out.println("=====邻接表的深度优先遍历（非递归）=====");
+        alGraph.clearVisited();
+        alGraph.DFS2(0);
 
 
     }
