@@ -56,6 +56,7 @@ public class ALGraph {
             edgeNode.setNext(vNodes[i].getLink());
             vNodes[i].setLink(edgeNode);
 
+            //有向图注释掉下面的代码
             edgeNode = new EdgeNode();
             edgeNode.setAdjvex(i);
             edgeNode.setNext(vNodes[j].getLink());
