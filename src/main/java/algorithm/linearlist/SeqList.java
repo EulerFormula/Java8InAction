@@ -9,6 +9,23 @@ public class SeqList {
      */
     private int size;
 
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int[] getData() {
+        return data;
+    }
+
+    public void setData(int[] data) {
+        this.data = data;
+    }
+
     public SeqList() {
         data = new int[100];
         size = 0;
@@ -24,7 +41,7 @@ public class SeqList {
     }
 
 
-    void display(String msg) {
+   public void display(String msg) {
         System.out.println("=====" + msg + "=====");
         for (int i = 0; i < size; i++) {
             System.out.print(String.format("%3d", data[i]));
